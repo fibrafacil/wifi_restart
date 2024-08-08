@@ -9,8 +9,8 @@ if ! ping -c2 8.8.8.8 > /dev/null && ! ping -c2 8.8.4.4 > /dev/null; then
 
     echo "${data} : Sem acesso a internet"
     ifconfig wlan0 down
-    echo "${data} : Desativou wlan0"
-    sleep 10
+	echo "${data} : Desativou wlan0"
+	sleep 10
 	echo "${data} : Aguardou 10 segundos"
 	ifconfig wlan0 up
 	echo "${data} : Ativou wlan0"
