@@ -1,6 +1,7 @@
 #!/usr/bin/bash
+set -x
+version=7.8.24.2242
 exec >>/storage/scripts/wifi.log
-
 data=$(date "+%A %d/%m/%Y %H:%M:%S")
 echo "${data} : Checando estado da conexao"
 rede=$(connmanctl services | grep "*" | awk '{print $2}')
@@ -27,7 +28,6 @@ if ! ping -c2 8.8.8.8 > /dev/null && ! ping -c2 8.8.4.4 > /dev/null; then
 		echo "${data} : Reconectando a rede ${rede}..."
 		connmanctl connect wifi_d83addc8e2a8_534550502d50524f46_managed_psk
 		wlan=$(connmanctl state | grep State | awk '{print $3}' | sed 's/ //g')
-		
 		if [[ "${wlan}" == "online" ]]
 		then
 			echo "${data} : Rede ${rede}: ${wlan}"
@@ -40,9 +40,7 @@ if ! ping -c2 8.8.8.8 > /dev/null && ! ping -c2 8.8.4.4 > /dev/null; then
 		fi
 	fi
 fi
-
 wlan=$(connmanctl state | grep State | awk '{print $3}' | sed 's/ //g')
 echo "${data} : Rede ${rede}: ${wlan}"
 echo "${data} : Executou $0"
-
 exit 0
