@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 exec >>/storage/scripts/wifi.log
 
-data=$(date)
+data=$(date "+%A %d/%m/%Y %H:%M:%S")
 echo "${data} : Checando estado da conexao"
 rede=$(connmanctl services | grep "*" | awk '{print $2}')
 
